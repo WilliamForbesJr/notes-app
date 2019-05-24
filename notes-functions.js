@@ -1,6 +1,4 @@
 //read existing notes from localStorage
-
-
 const getSavedNotes = function(){
     const notesJSON = localStorage.getItem('notes')
 
@@ -19,7 +17,7 @@ const saveNotes = function (notes){
 // Remove a note from the list
 const removeNote = function (id){
     const noteIndex = notes.findIndex(function (note){
-        return notes.id === id
+        return note.id === id
     })
 
     if (noteIndex > -1) {
@@ -37,7 +35,7 @@ const generateNoteDOM = function (note){
     button.textContent = 'x'
     noteEl.appendChild(button)
     button.addEventListener('click', function() {
-        removeNote(notes.id)
+        removeNote(note.id)
         saveNotes(notes)
         renderNotes(notes, filters)
     })
