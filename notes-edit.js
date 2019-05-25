@@ -5,9 +5,7 @@ const saveElement = document.querySelector('#save-note')
 const editElement = document.querySelector('#last-edited')
 const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
-let note = notes.find(function (note){
-    return note.id === noteId
-})
+let note = notes.find((note) => note.id === noteId)
 
 if (note === undefined){
     location.assign('index.html')
@@ -19,7 +17,7 @@ bodyElement.value = note.body
 editElement.textContent = `Last Updated ${moment(note.updatedAt).fromNow()}`
 
 //save new note
-saveElement.addEventListener('click', function (e) {
+saveElement.addEventListener('click', (e) => {
     note.body = bodyElement.value
     note.title = titleElement.value
     note.updatedAt = moment().valueOf()
@@ -28,19 +26,17 @@ saveElement.addEventListener('click', function (e) {
 })
 
 //remove note
-removeElement.addEventListener('click', function(){
+removeElement.addEventListener('click', () => {
     removeNote(note.id)
     saveNotes(notes)
     location.assign('index.html')
 })
 
 //live rendering event listener
-window.addEventListener('storage', function (e) {
+window.addEventListener('storage', (e) => {
     if (e.key === 'notes') {
         notes = JSON.parse(e.newValue)
-        note = notes.find(function (note) {
-            return note.id === noteId
-        })
+        note = notes.find((note) => note.id === noteId)
 
         if (note === undefined) {
             location.assign('index.html')
