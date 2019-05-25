@@ -2,13 +2,21 @@
 <html>
     <head></head>
     <body>
-        <input id ="note-title" placeholder="Note title">
-        <textarea id="note-body" placeholder="Enter note text"></textarea>
+        <h4>Edit Title</h4>
         <div>
-            <button id="remove-note">Remove Note</button>
-            <a href="index.html">back</a>
-            <button id="save-note">Save Note</button>
+            <input id="note-title" placeholder="Note title">
         </div>
+        <div>
+            <h4>Edit Body</h4>
+        <textarea id="note-body" placeholder="Enter note text"></textarea>
+        </div>
+        <span id="last-edited"></span>
+        <div>
+            <button id="save-note">Save Note</button>
+            <button id="remove-note">Remove Note</button>
+        </div>
+        <a href="index.html">back</a>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
         <script src="notes-functions.js"></script>
         <script src="notes-edit.js"></script>
     </body>

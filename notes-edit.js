@@ -2,6 +2,7 @@ const titleElement = document.querySelector('#note-title')
 const bodyElement = document.querySelector('#note-body')
 const removeElement = document.querySelector('#remove-note')
 const saveElement = document.querySelector('#save-note')
+const editElement = document.querySelector('#last-edited')
 const noteId = location.hash.substring(1)
 let notes = getSavedNotes()
 let note = notes.find(function (note){
@@ -12,14 +13,16 @@ if (note === undefined){
     location.assign('index.html')
 }
 
-//populate text boxes
+//populate elements
 titleElement.value = note.title
 bodyElement.value = note.body
+editElement.textContent = `Last Updated ${moment(note.updatedAt).fromNow()}`
 
 //save new note
 saveElement.addEventListener('click', function (e) {
     note.body = bodyElement.value
     note.title = titleElement.value
+    note.updatedAt = moment().valueOf()
     saveNotes(notes)
     location.assign('index.html')
 })
@@ -31,6 +34,7 @@ removeElement.addEventListener('click', function(){
     location.assign('index.html')
 })
 
+//live rendering event listener
 window.addEventListener('storage', function (e) {
     if (e.key === 'notes') {
         notes = JSON.parse(e.newValue)
@@ -45,5 +49,6 @@ window.addEventListener('storage', function (e) {
         //populate text boxes
         titleElement.value = note.title
         bodyElement.value = note.body
+        editElement.textContent = `Last Updated ${moment(note.updatedAt).fromNow()}`
     }
 })
