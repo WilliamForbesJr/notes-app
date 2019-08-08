@@ -10,6 +10,7 @@ renderNotes(notes, filters)
 document.querySelector("#create-note").addEventListener("click", () => {
     const noteId = uuidv4()
     const timestamp = moment().valueOf()
+    
     notes.push({
         id: noteId,
         title: '',
